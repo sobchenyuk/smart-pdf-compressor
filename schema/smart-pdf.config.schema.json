@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/cobchenyuk/smart-pdf-compressor/main/schema/smart-pdf.config.schema.json",
+  "title": "Smart PDF Compressor Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "compression": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minEstimatedReductionPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 10
+        },
+        "minSavingsPercent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 5
+        },
+        "skipOptimized": {
+          "type": "boolean",
+          "default": true
+        },
+        "aggressiveScanCompression": {
+          "type": "boolean",
+          "default": true
+        },
+        "profiles": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "aggressive": { "$ref": "#/$defs/compressionProfile" },
+            "medium": { "$ref": "#/$defs/compressionProfile" },
+            "light": { "$ref": "#/$defs/compressionProfile" }
+          }
+        }
+      }
+    },
+    "ghostscript": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "binary": {
+          "type": "string",
+          "default": "gs"
+        },
+        "timeoutMs": {
+          "type": "number",
+          "minimum": 1000,
+          "default": 300000
+        }
+      }
+    },
+    "workers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxWorkers": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 4,
+          "default": 4
+        },
+        "retryCount": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1
+        }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "saveLogs": {
+          "type": "boolean",
+          "default": true
+        },
+        "logLevel": {
+          "type": "string",
+          "enum": ["debug", "info", "warn", "error"],
+          "default": "info"
+        },
+        "dashboardRefreshMs": {
+          "type": "number",
+          "minimum": 100,
+          "default": 500
+        }
+      }
+    },
+    "reports": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "generateJsonReport": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "copyAll": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "onConflict": {
+          "type": "string",
+          "enum": ["skip", "overwrite", "rename"],
+          "default": "skip"
+        },
+        "preserveTimestamps": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "notifications": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "success": {
+          "type": "boolean",
+          "default": true
+        },
+        "errors": {
+          "type": "boolean",
+          "default": true
+        },
+        "warnings": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "largeFileThresholdMB": {
+          "type": "number",
+          "minimum": 1,
+          "default": 100
+        },
+        "maxConcurrentLargeFiles": {
+          "type": "number",
+          "minimum": 1,
+          "default": 1
+        },
+        "analysisReadLimitMB": {
+          "type": "number",
+          "minimum": 1,
+          "default": 64
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "safeMode": {
+          "type": "boolean",
+          "default": true
+        },
+        "lowDiskSpaceWarningMB": {
+          "type": "number",
+          "minimum": 1,
+          "default": 512
+        }
+      }
+    }
+  },
+  "$defs": {
+    "compressionProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pdfSettings",
+        "colorImageResolution",
+        "grayImageResolution",
+        "monoImageResolution",
+        "jpegQuality"
+      ],
+      "properties": {
+        "pdfSettings": {
+          "type": "string",
+          "examples": ["/screen", "/ebook", "/printer"]
+        },
+        "colorImageResolution": {
+          "type": "number",
+          "minimum": 1
+        },
+        "grayImageResolution": {
+          "type": "number",
+          "minimum": 1
+        },
+        "monoImageResolution": {
+          "type": "number",
+          "minimum": 1
+        },
+        "jpegQuality": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    }
+  }
+}
