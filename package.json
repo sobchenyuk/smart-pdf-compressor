@@ -1,10 +1,11 @@
 {
   "name": "smart-pdf-compressor",
   "version": "0.1.0",
-  "description": "Production-ready macOS CLI for rule-based PDF analysis and Ghostscript-based compression.",
+  "description": "Smart PDF compression CLI with Ghostscript, automatic analysis, and batch processing for macOS",
   "type": "module",
   "main": "src/index.js",
   "types": "./types/index.d.ts",
+  "preferGlobal": true,
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
@@ -41,13 +42,24 @@
   },
   "keywords": [
     "pdf",
-    "compression",
+    "pdf-compression",
+    "pdf-optimizer",
     "ghostscript",
-    "macos",
     "cli",
-    "batch-processing"
+    "pdf-cli",
+    "pdf-tools",
+    "batch-processing",
+    "macos",
+    "pdf-reduce-size"
   ],
   "author": "cobchenyuk <cobchenyuk@gmail.com>",
-  "homepage": "https://www.linkedin.com/in/sobchenyuk-andrey/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sobchenyuk/smart-pdf-compressor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sobchenyuk/smart-pdf-compressor/issues"
+  },
+  "homepage": "https://github.com/sobchenyuk/smart-pdf-compressor",
   "license": "MIT"
 }

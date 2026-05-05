@@ -1,3 +1,26 @@
+> Smart PDF Compressor is for people who sit on gigabytes of PDF scans and are tired of full disks and attachment size limits.
+>
+> Instead of running `gs` by hand on one folder after another or uploading confidential documents to random websites, you run a single command:
+>
+> ```bash
+> spdf ./documents ./compressed
+> ```
+>
+> The tool will:
+>
+> - analyze each PDF and choose an appropriate compression strategy;
+> - save tens of percent of disk space on large directory trees;
+> - protect your original files: it never modifies, deletes, or overwrites them;
+> - skip already optimized documents, so you do not waste time recompressing them.
+>
+> Smart PDF Compressor is a good fit for:
+>
+> - large archives of scans (legal, medical, accounting, government documents);
+> - project and design directories that keep growing because of heavy PDFs;
+> - CI/CD pipelines and automation where artifact and log sizes matter.
+>
+> Unlike online compressors, Smart PDF Compressor runs locally on your macOS machine, keeps documents on your disk, and scales from dozens to tens of thousands of files in a single run.
+
 # Smart PDF Compressor
 
 Smart PDF Compressor is a production-oriented macOS CLI for rule-based PDF compression across large directory trees.
